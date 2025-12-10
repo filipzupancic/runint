@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "runint-benchmarks"
+version = "0.1.0"
+description = "Modular benchmarking harness for LLMs and Computer Vision tasks"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "benchmarks"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.109.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+requests = "^2.31.0"
+pydantic = "^2.6.0"
+pydantic-settings = "^2.2.0"
+sqlalchemy = "^2.0.25"
+psycopg2-binary = "^2.9.9"
+# Optional: Add task-specific libraries as you need them
+# opencv-python-headless = "^4.9.0"
+# sacrebleu = "^2.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+httpx = "^0.26.0"  # For testing API endpoints
+black = "^24.1.0"
+ruff = "^0.2.0"    # Fast linter replacing Flake8/Isort
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# --- Tool Configuration ---
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"] # Enable Pyflakes, pycodestyle, and isort

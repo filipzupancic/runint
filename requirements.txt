@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+requests
+pydantic
+pydantic-settings
+sqlalchemy
+psycopg2-binary
+# Add any specific benchmark libs here (e.g. sacrebleu, opencv-python-headless)
