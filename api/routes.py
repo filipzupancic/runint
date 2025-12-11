@@ -1,10 +1,9 @@
-# api/routes.py
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
 
-# Import your benchmark classes
 from benchmarks.nlp.translation import TranslationBenchmark
+from benchmarks.test_run import TestRunBenchmark
 
 router = APIRouter()
 
@@ -18,6 +17,18 @@ class BenchmarkRequest(BaseModel):
 def run_benchmark_task(request: BenchmarkRequest):
     """Background task wrapper"""
     # 1. Select the correct class based on task_type
+    if request.task_type == "test_run":
+        print("--> Starting Test Run...")
+        benchmark = TestRunBenchmark(
+            model_name="mock-model",
+            engine="mock-engine",
+            task_type="test_run",
+            dataset_name="internal_test",
+            config=request.config
+        )
+        benchmark.execute()
+        print("--> Test Run Complete. CSV should be generated.")
+        return
     if request.task_type == "translation":
         # In a real app, inject URL from settings
         request.config["api_url"] = "http://ollama:11434" 
@@ -38,7 +49,7 @@ async def trigger_benchmark(request: BenchmarkRequest, background_tasks: Backgro
     """
     Endpoint to start a benchmark run asynchronously.
     """
-    valid_tasks = ["translation"]
+    valid_tasks = ["test_run", "translation"]
     if request.task_type not in valid_tasks:
         raise HTTPException(status_code=400, detail="Invalid task type")
 

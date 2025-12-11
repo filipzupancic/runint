@@ -1,0 +1,41 @@
+# --- Python Core ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual Environments ---
+venv/
+.venv/
+env/
+
+# --- RunInt Data (Ignored) ---
+# We ignore the heavy inputs
+data/raw/*
+data/prepared/*
+# But we track the folder structure
+!data/raw/.gitkeep
+!data/prepared/.gitkeep
+
+# --- RunInt Results (Tracked) ---
+# We WANT to track CSVs, so we do NOT ignore results/csv/
+# We still ignore logs and temp files
+results/logs/*
+!results/logs/.gitkeep
+
+# --- Configuration & Secrets ---
+# NEVER commit your real secrets
+.env
+.env.local
+.env.*.local
+
+# --- Docker & Database ---
+postgres_data/
+ollama_models/
+
+# --- IDE & System ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+.pytest_cache/
+.coverage

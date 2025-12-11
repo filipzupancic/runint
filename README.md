@@ -1,4 +1,4 @@
-# RunInt Benchmarks
+# RUNINT Benchmarks
 
 A modular benchmarking harness designed to evaluate various AI models (LLMs, Vision) across different runtimes (Ollama, vLLM, etc.).
 

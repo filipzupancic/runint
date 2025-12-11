@@ -1,40 +1,38 @@
-version: '3.8'
-
 services:
   # 1. The Controller: Your FastAPI Application
-  runint-api:
+  runint-benchmarks-api:
     build:
       context: .
       dockerfile: docker/Dockerfile.api
     container_name: runint_api
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - .:/app                 # Hot-reloading: changes in code reflect immediately
       - ./results:/app/results # Persist CSVs to host machine
       - ./data:/app/data       # Allow access to local datasets
     environment:
-      - DB_URL=postgresql://user:password@db:5432/runint_benchmarks
+      #- DB_URL=postgresql://user:password@db:5432/runint_benchmarks
       - OLLAMA_URL=http://ollama:11434
       - VLLM_URL=http://vllm:8000
     depends_on:
-      - db
+      #- runint-db
       - ollama
     command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 
   # 2. The Storage: PostgreSQL with JSONB support
-  db:
-    image: postgres:15-alpine
-    container_name: runint_db
-    ports:
-      - "5432:5432"  # Exposed to host for easy inspection (DBeaver, TablePlus)
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: runint_benchmarks
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: runint_db
+  #   ports:
+  #     - "5432:5432"  # Exposed to host for easy inspection (DBeaver, TablePlus)
+  #   environment:
+  #     POSTGRES_USER: user
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: runint_benchmarks
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #     - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   # 3. The Engine: Ollama (CPU/GPU)
   ollama:
@@ -68,3 +66,7 @@ services:
 volumes:
   postgres_data:
   ollama_models:
+
+networks:
+  runint-network:
+    external: true

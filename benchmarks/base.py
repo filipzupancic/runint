@@ -1,4 +1,3 @@
-# benchmarks/base.py
 import time
 import json
 import csv
@@ -9,7 +8,6 @@ from datetime import datetime
 from typing import Dict, Any, List, Optional
 import logging
 
-# Assuming you'll set up a database session factory later
 # from database.connection import get_db_session 
 # from database.models import BenchmarkResult
 

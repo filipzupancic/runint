@@ -1,6 +1,6 @@
-# benchmarks/nlp/translation.py
 import requests
 import json
+from typing import Dict
 from ..base import BaseBenchmark
 # Optional: import specific metric libraries
 # from sacrebleu.metrics import BLEU 

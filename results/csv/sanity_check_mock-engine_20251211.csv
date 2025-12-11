@@ -1,0 +1,4 @@
+run_id,timestamp,model_name,engine,task_type,dataset_name,latency_ms,error_occurred,parameters,metrics,raw_output
+c0fbc19a-7acc-4d99-b0dc-748068dda8dd,2025-12-11T20:17:38.145354,mock-model,mock-engine,sanity_check,internal_test,50.16,False,{},"{""mock_accuracy"": 1.0, ""random_score"": 0.68}",processed_mock_input_0
+c0fbc19a-7acc-4d99-b0dc-748068dda8dd,2025-12-11T20:17:38.195581,mock-model,mock-engine,sanity_check,internal_test,50.13,False,{},"{""mock_accuracy"": 1.0, ""random_score"": 0.54}",processed_mock_input_1
+c0fbc19a-7acc-4d99-b0dc-748068dda8dd,2025-12-11T20:17:38.245814,mock-model,mock-engine,sanity_check,internal_test,50.13,False,{},"{""mock_accuracy"": 1.0, ""random_score"": 0.85}",processed_mock_input_2
