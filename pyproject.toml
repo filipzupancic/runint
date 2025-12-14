@@ -1,65 +1,22 @@
 [tool.poetry]
 name = "runint"
 version = "0.1.0"
-description = "The open standard for AI Runtime and Benchmark Intelligence."
-authors = ["Your Name <your.email@example.com>"]
+description = "AI Runtime & Benchmark Intelligence Library"
+authors = ["FIlip KZ <filipzupancic123@gmail.com>"]
 readme = "README.md"
-license = "MIT"
-repository = "https://github.com/your-org/runint"
-documentation = "https://runint.readthedocs.io"
-keywords = ["llm", "benchmarking", "inference", "deployment", "ai-ops"]
+packages = [{include = "runint", from = "src"}]
 
-# This tells Poetry that the code lives in 'src/runint'
-packages = [
-    { include = "runint", from = "src" }
-]
+[tool.poetry.scripts]
+runint = "runint.cli:app"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-# --- Core Library Dependencies (Keep this light!) ---
-# Pydantic is the backbone for your Config and Result schemas
-pydantic = "^2.6.0" 
-# Requests is needed to talk to Ollama/vLLM APIs
-requests = "^2.31.0" 
-# PyYAML is useful if you want to support YAML configs (standard for Ops)
-PyYAML = "^6.0.1"
-# Typer is excellent for building the 'runint' CLI (cleaner than argparse)
-typer = {extras = ["all"], version = "^0.9.0"}
-# Rich makes the CLI output (tables, progress bars) look professional
+pydantic = "^2.6.0"
+typer = {extras = ["all"], version = ">=0.9.0"}
 rich = "^13.7.0"
-
-[tool.poetry.group.dev.dependencies]
-# Dependencies for running tests and formatting
-pytest = "^8.0.0"
-black = "^24.1.0"
-ruff = "^0.2.0"
-isort = "^5.13.0"
-
-[tool.poetry.group.service.dependencies]
-# Dependencies only needed if someone runs the API Service (not the library)
-fastapi = "^0.109.0"
-uvicorn = "^0.27.0"
-sqlalchemy = "^2.0.25"
-psycopg2-binary = "^2.9.9"
-
-[tool.poetry.scripts]
-# This creates the global terminal command 'runint'
-# It maps to the 'main' function in src/runint/cli.py
-runint = "runint.cli:app"
+pyyaml = "^6.0.1"
+requests = "^2.31.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-# --- Tool Configurations ---
-
-[tool.black]
-line-length = 88
-target-version = ['py310']
-
-[tool.isort]
-profile = "black"
-
-[tool.ruff]
-line-length = 88
-select = ["E", "F", "I"] # Pyflakes, pycodestyle, isort

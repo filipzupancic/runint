@@ -129,7 +129,7 @@ class MyBenchmark(BaseBenchmark):
 ```bash
 # Development Setup
 
-git clone [https://github.com/your-org/runint.git](https://github.com/your-org/runint.git)
+git clone [https://github.com/filipzupancic/runint.git](https://github.com/filipzupancic/runint.git)
 cd runint
 poetry install
 poetry run pytest
