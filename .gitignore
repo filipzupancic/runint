@@ -1,0 +1,40 @@
+# --- Python Core ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# --- Virtual Environments ---
+# Common names for local virtual envs
+venv/
+env/
+.venv/
+
+# --- Distribution & Build (Crucial for Libraries) ---
+# These folders are created when you run 'poetry build'
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- IDE Settings ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# --- Testing & Quality ---
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# --- RunInt Specifics ---
+# Since the library generates deployment files during tests, ignore them
+docker-compose.yml
+
+# Ignore local test results if you run 'runint benchmark' inside the repo
+results/csv/*
+results/logs/*
+!results/csv/.gitkeep
